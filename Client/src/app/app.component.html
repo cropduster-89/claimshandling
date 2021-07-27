@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <span>Claims</span>
+</mat-toolbar>
+<div *ngIf="!isAuthenticated; else authenticated" class="flex-column quarter-width padding-50">
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput [(ngModel)]="username">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="password">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="login()">Login</button>
+</div>
+<ng-template #authenticated>
+  <div class="half-width padding-50">
+    <table>
+      <tr>
+        <th>Code</th>
+        <th>Description</th>
+      </tr>
+      <tr *ngFor="let lossType of lossTypes">
+        <td>{{ lossType.code }}</td>
+        <td>{{ lossType.description }}</td>
+      </tr>
+    </table>
+    <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+  </div>
+</ng-template>
